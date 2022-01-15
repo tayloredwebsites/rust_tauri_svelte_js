@@ -7,7 +7,7 @@ mod commands;
 
 fn main() {
 	tauri::Builder::default()
-	.invoke_handler(tauri::generate_handler![commands::my_custom_command])
+	.invoke_handler(tauri::generate_handler![commands::my_custom_command, commands::generate_password])
 		.run(tauri::generate_context!())
 		.expect("error while running tauri application");
 }

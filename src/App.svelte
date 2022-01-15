@@ -14,12 +14,18 @@
 
 	import { invoke } from '@tauri-apps/api/tauri';
 
-	let input: string = '';
+	let message_in: string = '';
+	let length_in: string = '8';
 	let result: string = '';
-	const handleClick = async () => {
+	const handleText = async () => {
 		result = await invoke('my_custom_command', {
-			invokeMessage: input,
-		});
+			invokeMessage: message_in, // pass message and get response to it
+		})
+	};
+	const handlePassword = async () => {
+		result = await invoke('generate_password', {
+			invokePassword: length_in,	// pass length and get password back
+		})
 	};
 </script>
 
@@ -27,13 +33,22 @@
 	<Container>
 		<Card class="mb-3">
 			<CardHeader>
-				<CardTitle>Tauri + Svelte</CardTitle>
+				<CardTitle>Tauri Experimenting</CardTitle>
 			</CardHeader>
 			<CardBody>
-				<CardSubtitle>Example of async call to Tauri</CardSubtitle>
-				<CardText>Write something below and press the button.</CardText>
-				<Input type="text" bind:value={input} />
-				<Button color="primary" on:click={handleClick}>Call Rust</Button>
+				<fieldset>
+					<label for='msg' alt="To send a message: Enter the message and press the 'Send Message' button.">Message Text</label>
+					<Input type="text" id='msg' bind:value={message_in} />
+				</fieldset>
+				<fieldset>
+					<label for='len' alt="To generate a password: Enter the length and press the 'Get Password' button.">Password Length</label>
+					<Input type="text" id='len' bind:value={length_in} />
+				</fieldset>
+
+				<fieldset>
+					<Button color="primary" on:click={handleText}>Send Message</Button>
+					<Button color="primary" on:click={handlePassword}>Get Password</Button>
+				</fieldset>
 			</CardBody>
 			<CardFooter>
 				{#if result.length !== 0}
