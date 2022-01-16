@@ -1,3 +1,11 @@
+# Rust + Tauri + Svelte Tutorial Example
+
+## From Jakub Barszcezewski
+
+[tutorial](https://jbarszczewski.com/rust-tauri-svelte-tutorial)
+
+Note: this is really a javascript style front end with a rust back end
+
 # Tauri Svelte App Template
 
 This is a project template for [Tauri](https://tauri.studio) and [Svelte](https://svelte.dev) apps. It lives at https://github.com/jbarszczewski/tauri-svelte-template.
